@@ -1,0 +1,7 @@
+
+git clone https://github.com/ayoubalami/detectors_lab .
+
+docker build --network host -t debian-detectors_lab:beta . 
+docker run -d --name debian-detectors_lab -p 8080:8080 -p 8000:8000 -v ${pwd}/shared:/root/shared debian-detectors_lab:beta
+
+docker exec -it $$$$$$$$ python /root/shared/app_controller.py
