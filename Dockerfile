@@ -35,7 +35,7 @@ RUN python3 -m pip install tensorflow-cpu
 RUN apt-get -y upgrade
 RUN apt-get -y update
 
-WORKDIR /root
+WORKDIR ~
 RUN apt-get install -y cmake
 RUN apt-get install -y python3-dev
 RUN apt-get install -y python3-numpy
@@ -53,9 +53,9 @@ RUN apt-get install -y libwebp-dev
 RUN apt-get install -y git
 RUN git clone https://github.com/opencv/opencv.git
 
-WORKDIR /root/opencv
+WORKDIR ~/opencv
 RUN mkdir build
-WORKDIR /root/opencv/build
+WORKDIR ~/opencv/build
 RUN cmake ../
 # RUN cmake ../ -D ENABLE_NEON=ON  -D ENABLE_VFPV3=ON \
 #       -D OPENCV_ENABLE_NONFREE=ON \
@@ -80,11 +80,11 @@ RUN make install
 
 RUN cp -R /usr/local/lib/python3.*/site-packages/cv2/ /usr/local/lib/python3.*/dist-packages/
 
-WORKDIR /root
+WORKDIR ~
 COPY requirements.txt requirements.txt
 RUN python3 -m pip install --default-timeout=100 -r requirements.txt
 
-WORKDIR /root/shared
+WORKDIR ~/shared
 RUN git clone https://github.com/ayoubalami/flask_python .
 
 # CMD ["python","app_controller.py"]
@@ -93,7 +93,7 @@ CMD ["tail","-f","/dev/null"]
 
 #################################################################################################
 ########  docker build --network host -t debian-python_tens_cv:prod .  ##########################
-######## docker run -d --name debian-detectors_lab -p 8080:8080 -p 8000:8000 -v ${pwd}/shared:/root/shared debian-detectors_lab:prod
+######## docker run -d --name debian-detectors_lab -p 8080:8080 -p 8000:8000 -v ${pwd}/shared:~/shared debian-detectors_lab:prod
 ######## docker exec -it ££££££££££££££ /bin/bash
 ######## RUN alias py=/usr/bin/python
 ######## git config --global credential.helper store
