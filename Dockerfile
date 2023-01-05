@@ -1,7 +1,9 @@
 # debian:buster-20201117
 # FROM debian@sha256:0e9c1df5dec20d9459ba6c30354a28bc5b6926444074bcf05486e9df41da3b1a
-FROM debian@sha256:9b0e3056b8cd8630271825665a0613cc27829d6a24906dc0122b3b4834312f7d
-# 75ba88a40235cbcaa70686e0e63394b435e0a7f4497fa38f88277c4d43f2c384  for arm/64v8
+
+# FROM debian@sha256:9b0e3056b8cd8630271825665a0613cc27829d6a24906dc0122b3b4834312f7d for INTEL
+FROM debian@sha256:75ba88a40235cbcaa70686e0e63394b435e0a7f4497fa38f88277c4d43f2c384
+
 RUN apt-get update && apt-get -y install --no-install-recommends \
 	gcc \
 	g++ \
@@ -85,9 +87,9 @@ RUN python3 -m pip install --default-timeout=100 -r requirements.txt
 WORKDIR /root/shared
 RUN git clone https://github.com/ayoubalami/flask_python .
 
-CMD ["python","app_controller.py"]
+# CMD ["python","app_controller.py"]
 
-# CMD ["tail","-f","/dev/null"]
+CMD ["tail","-f","/dev/null"]
 
 #################################################################################################
 ########  docker build --network host -t debian-python_tens_cv:prod .  ##########################
