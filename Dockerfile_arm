@@ -36,7 +36,7 @@ RUN python3 -m pip install --upgrade pip
 RUN apt-get -y upgrade
 RUN apt-get -y update
 
-WORKDIR /home/pi/app
+WORKDIR /root
 RUN apt-get install -y cmake
 RUN apt-get install -y python3-dev
 RUN apt-get install -y python3-numpy
@@ -54,9 +54,9 @@ RUN apt-get install -y libwebp-dev
 RUN apt-get install -y git
 RUN git clone https://github.com/opencv/opencv.git
 
-WORKDIR /home/pi/app/opencv
+WORKDIR /root/opencv
 RUN mkdir build
-WORKDIR /home/pi/app/opencv/build
+WORKDIR /root/opencv/build
 RUN cmake ../
 # RUN cmake ../ -D ENABLE_NEON=ON  -D ENABLE_VFPV3=ON \
 #       -D OPENCV_ENABLE_NONFREE=ON \
@@ -81,11 +81,11 @@ RUN make install
 
 RUN cp -R /usr/local/lib/python3.*/site-packages/cv2/ /usr/local/lib/python3.*/dist-packages/
 
-WORKDIR /home/pi/app
+WORKDIR /root
 COPY requirements.txt requirements.txt
 RUN python3 -m pip install --default-timeout=100 -r requirements.txt
 
-WORKDIR /home/pi/app/shared
+WORKDIR /root/shared
 RUN git clone https://github.com/ayoubalami/flask_python .
 
 # CMD ["python","app_controller.py"]
