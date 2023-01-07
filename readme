@@ -14,3 +14,6 @@ git clone https://github.com/ayoubalami/detectors_lab .
 docker build --network host -t debian-detectors_lab:beta --file Dockerfile_x68  . 
 docker run -d --name debian-detectors_lab -p 8080:8080 -p 8000:8000 -v ${pwd}/shared:/root/shared debian-detectors_lab:beta
 docker exec -it $$$$$$$$ python /root/shared/app_controller.py
+
+
+sudo sh -c 'wpa_passphrase my_SSID my_password >> /etc/wpa_supplicant/wpa_supplicant.conf'
