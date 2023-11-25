@@ -1,4 +1,4 @@
-
+# docker build --network host -t flask-tracking-project:dev -f Dockerfile_arm  .
 # for INTEL CPU
 # FROM debian@sha256:9b0e3056b8cd8630271825665a0613cc27829d6a24906dc0122b3b4834312f7d 
 
